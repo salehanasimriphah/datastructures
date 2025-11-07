@@ -1,54 +1,68 @@
 #include<iostream>
 using namespace std;
-
 class Calculator{
 	private:
-		Calculator(){}
-		
+		Calculator(){
+			
+		}
 		static int operationCount;
-		
-		public:
-	static int sum(int a, int b)		
-	{
+	public:
+		//sum
+	static int sum(int a,int b){
 		operationCount++;
 		return a+b;
-	}
-	static int difference(int a,int b)
-	{
+	}	
+	//difference
+	static int difference(int a,int b){
 		operationCount++;
 		return a-b;
 	}
-	static double quotient(int a,int b)
-	{
+	//Quotient
+	static double quotient(int a,int b){
 		operationCount++;
-		return a/(double)b;
+		if(b==0){
+			cout<<"Error: Division by zero!"<<endl;
+			return 0;
+		}
+		return a/b;
 	}
-	static int remainder(int a,int b)
-	{
+	//Remainder
+	static int remainder(int a,int b){
 		operationCount++;
-		return a%b;
+		if(b==0){
+			cout<<"Error: Division by zero!"<<endl;
+			return 0;
+		}
+		return a % b;
 	}
-	static double percentage(int a,int b)
-	{
-		
+	//Percentage
+	static double percentage(int a, int b){
 		operationCount++;
-		return (a/b)*100;
+		if(b==0){
+			cout<<"Error: Division by zero!"<<endl;
+			return 0;
+		}
+		return ( a / b ) * 100;
 	}
-	
+	//Accessor Function
 	static int getOperationCount(){
 		return operationCount;
-	}
+	}	
 };
-	int Calculator::operationCount=0;
-
-	int main(){
-	cout<<"---CALCULATOR---"<<endl;
-		cout<<"SUM:"<<Calculator::sum(30,40)<<endl;
-			cout<<"DIFFERENCE:"<<Calculator::difference(50,40)<<endl;
-				cout<<"QUOTIENT:"<<Calculator::quotient(30,40)<<endl;
-					cout<<"REMAINDER:"<<Calculator::remainder(30,40)<<endl;
-						cout<<"PERCENTAGE:"<<Calculator::percentage(10,10)<<"%"<<endl;
-						
-						cout<<"Operations Performed Total:"<<Calculator::getOperationCount()<<endl;
-						return 0;
+int Calculator::operationCount=0;
+int main(){
+	int a , b;
+	cout<<"Enter First Number: ";
+	cin>>a;
+	cout<<endl;
+	cout<<"Enter Second Number: ";
+	cin>>b;
+	cout<<endl;
+	cout<<"Sum: "<<Calculator::sum(a,b)<<endl;
+	cout<<"Difference: "<<Calculator::difference(a,b)<<endl;
+	cout<<"Quotient: "<<Calculator::quotient(a,b)<<endl;
+	cout<<"Remainder: "<<Calculator::remainder(a,b)<<endl;
+	cout<<"Percentage: "<<Calculator::percentage(a,b)<<"%"<<endl;
+	cout<<"\n Total Operations Performed: "<<Calculator::getOperationCount()<<endl;
+	return 0;
 }
